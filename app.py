@@ -1,9 +1,10 @@
 import streamlit as st
+import openai
 
 st.image("https://docs.streamlit.io/logo.svg")
 
 st.header("OpenAI API Key를 적어주세요.")
-api = st.text_input("11?")
+api = st.text_input("API Key?")
 
 if st.button("확인"):
   from openai import OpenAI
@@ -18,5 +19,14 @@ if st.button("실행하기"):
       instructions = "You are a helpful assistant.",
       model='gpt-3.5-turbo'
   )
+  thread = client.beta.threads.create(
+    messages=[
+      {
+        "role": "user",
+        "content": (f"질문: {prompt}"),
+      }
+    ]
+  )
+  
 
 st.divider()
