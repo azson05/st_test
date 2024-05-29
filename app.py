@@ -9,10 +9,7 @@ api = st.text_input(label, type="password")
 
 if st.button("확인"):
   from openai import OpenAI
-
-client = OpenAI(api_key=f"{api}")
-
-st.divider()
+  client = OpenAI(api_key=f"{api}")
 
 st.header("무엇이든 물어보세요.")
 prompt = st.text_input("질문?")
