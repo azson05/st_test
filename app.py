@@ -16,10 +16,6 @@ if st.button("실행하기"):
       instructions = "You are a helpful assistant.",
       model='gpt-3.5-turbo'
   )
-  thread = client.beta.threads.create(
-      messages = [
-          {"role":"user", "content":f"{prompt}"}
-      ]
   )
   run = client.beta.threads.runs.create(
       thread_id=thread.id,
