@@ -16,7 +16,5 @@ if st.button("실행하기"):
       instructions = "You are a helpful assistant.",
       model='gpt-3.5-turbo'
   )
-  
-  st.markdown(f"응답: {prompt}")
 
 st.divider()
