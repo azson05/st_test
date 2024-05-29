@@ -3,7 +3,7 @@ import streamlit as st
 st.image("https://docs.streamlit.io/logo.svg")
 
 st.header("OpenAI API Key를 적어주세요.")
-api = st.text_input("질문?")
+api = st.text_input("11?")
 
 if st.button("확인"):
   from openai import OpenAI
