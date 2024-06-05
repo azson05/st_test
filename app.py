@@ -1,5 +1,4 @@
 import streamlit as st
-import openai
 
 st.image("https://docs.streamlit.io/logo.svg")
 
@@ -18,6 +17,18 @@ st.divider()
 st.header("무엇이든 물어보세요.")
 prompt = st.text_input("질문?")
 if st.button("실행하기"):
+  thread = client.beta.threads.create(
+    messages=[
+      {
+          "role":"user",
+          "content": f"{prompt}"
+      }
+    ]
+  )
+  run = client.beta.threads.runs.create(
+    thread_id=thread.id,
+    assistant_id=assistant.id
+  )
   
 
 st.divider()
