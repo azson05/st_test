@@ -44,13 +44,12 @@ if st.button("실행하기"):
         time.sleep(1)  # 1초 대기
         run = client.beta.threads.runs.retrieve(run.id)
     
-    if run.status == 'completed':
-        # OpenAI API 응답에서 'message'의 'content'를 추출
-        response = run['choices'][0]['message']['content'].strip()
-        st.markdown(f"**Question:** {prompt}")
-        st.markdown(f"**Answer:** {response}")
-    else:
-        st.error("Failed to get a response from the assistant.")
+  if run.status == 'completed':
+      response = run['choices'][0]['message']['content'].strip()
+      st.markdown(f"**Question:** {prompt}")
+      st.markdown(f"**Answer:** {response}")
+  else:
+      st.error("Failed to get a response from the assistant.")
 
   st.write(run)
   
