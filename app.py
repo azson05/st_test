@@ -37,6 +37,9 @@ if st.button("실행하기"):
      thread_id=thread.id,
      assistant_id=assistant.id
   )
+
+  st.write(run)
+  
   response = run['choices'][0]['message']['content'].strip()
 
   st.markdown(f"**Question:** {prompt}")
