@@ -24,10 +24,10 @@ if st.button("실행하기"):
         temperature=0.7,
     )
 
-    answer = response.choices[0].text.strip()
+  answer = response.choices[0].text.strip()
 
-    st.markdown(f"질문: {prompt}")
-    st.markdown(f"답변: {answer}")
+  st.markdown(f"질문: {prompt}")
+  st.markdown(f"답변: {answer}")
   st.markdown(f"질문: {prompt}")
 
 st.divider()
