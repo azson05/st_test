@@ -33,14 +33,14 @@ if st.button("실행하기"):
             }
         ]
     )
-    run = client.beta.threads.runs.create(
-        thread_id=thread.id,
-        assistant_id=assistant.id
-    )
-    answer = run.messages[-1]['content'].strip()
+  run = client.beta.threads.runs.create(
+     thread_id=thread.id,
+     assistant_id=assistant.id
+  )
+  answer = run.messages[-1]['content'].strip()
 
-    st.markdown(f"**Question:** {prompt}")
-    st.markdown(f"**Answer:** {answer}")
+  st.markdown(f"**Question:** {prompt}")
+  st.markdown(f"**Answer:** {answer}")
   st.markdown(f"질문: {prompt}")
 
 st.divider()
