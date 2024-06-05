@@ -35,6 +35,6 @@ if st.button("실행하기"):
     thread_id=thread.id,
     assistant_id=assistant.id
   )
-  
+  st.markdown(f"질문: {prompt}")
 
 st.divider()
