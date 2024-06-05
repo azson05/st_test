@@ -26,17 +26,21 @@ if st.button("실행하기"):
     model='gpt-3.5-turbo'
   )
   thread = client.beta.threads.create(
-    messages=[
-      {
-          "role":"user",
-          "content": f"{prompt}"
-      }
-    ]
-  )
-  run = client.beta.threads.runs.create(
-    thread_id=thread.id,
-    assistant_id=assistant.id
-  )
+        messages=[
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ]
+    )
+    run = client.beta.threads.runs.create(
+        thread_id=thread.id,
+        assistant_id=assistant.id
+    )
+    answer = run.messages[-1]['content'].strip()
+
+    st.markdown(f"**Question:** {prompt}")
+    st.markdown(f"**Answer:** {answer}")
   st.markdown(f"질문: {prompt}")
 
 st.divider()
