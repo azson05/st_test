@@ -1,7 +1,5 @@
 import streamlit as st
 import openai
-import time
-
 
 st.image("https://docs.streamlit.io/logo.svg")
 
@@ -40,19 +38,6 @@ if st.button("실행하기"):
      assistant_id=assistant.id
   )
 
-  while run.status not in ['completed', 'failed']:
-        time.sleep(1)  # 1초 대기
-        run = client.beta.threads.runs.retrieve(run.id)
-    
-  if run.status == 'completed':
-      response = run['choices'][0]['message']['content'].strip()
-      st.markdown(f"**Question:** {prompt}")
-      st.markdown(f"**Answer:** {response}")
-  else:
-      st.error("Failed to get a response from the assistant.")
-
-  st.write(run)
-  
   response = run['choices'][0]['message']['content'].strip()
 
   st.markdown(f"**Question:** {prompt}")
