@@ -17,6 +17,12 @@ st.divider()
 st.header("무엇이든 물어보세요.")
 prompt = st.text_input("질문?")
 if st.button("실행하기"):
+  from openai import OpenAI
+  client = OpenAI(api_key=f"{api}")
+  assistant = client.beta.assistants.create(
+    instructions = "You are a helpful assistant.",
+    model='gpt-3.5-turbo'
+  )
   thread = client.beta.threads.create(
     messages=[
       {
