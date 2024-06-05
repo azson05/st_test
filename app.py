@@ -6,6 +6,7 @@ st.header("OpenAI API Key를 적어주세요.")
 api = st.text_input("API Key?")
 
 if st.button("확인"):
+  api = st.text_input("API Key?")
   
 st.divider()
 
