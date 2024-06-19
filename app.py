@@ -3,9 +3,9 @@ from openai import OpenAI
 from PIL import Image
 from streamlit_chat import message
 
-def display_avatar(백경이.png):
+def display_avatar(image_path):
     # 이미지 파일 열기
-    img = Image.open(백경이.png)
+    img = Image.open(image_path)
     img.show()
 
 def app():
@@ -40,8 +40,14 @@ if st.button('Assistant 새롭게 생성하기'):
         messages = []
         st.session_state.messages = messages # 대화 내역을 session_state에 저장
         message("안녕, 부경대 친구들, 학교생활을 도와주는 '백경이봇'이야!", is_user=False)
+                
+        # 사용자가 업로드한 이미지 파일 경로
+        user_image_path = "백경이.png"
+        
+        # 업로드한 이미지를 아바타로 표시
+        display_avatar(user_image_path)
         st.session_state.messages.append({"content": "안녕, 부경대 친구들! 학교생활을 도와주는 '백경이봇'이야.", "role": False})
-
+    
 if prompt := st.chat_input("메시지를 입력하세요."):
     if st.session_state.client:
         st.session_state.messages.append({"content": prompt, "role": True}) # user의 prompt를 messages로 저장
@@ -65,12 +71,7 @@ if prompt := st.chat_input("메시지를 입력하세요."):
         thread_messages = client.beta.threads.messages.list(thread.id, run_id=run.id)
         answer = thread_messages.data[0].content[0].text.value # assistant의 응답에서 text를 추출
         message(answer)
-        
-        # 사용자가 업로드한 이미지 파일 경로
-        user_image_path = "백경이.png"
-        
-        # 업로드한 이미지를 아바타로 표시
-        display_avatar(user_image_path)
+
 
         st.session_state.messages.append({"content": answer, "role": False})
 if st.button("대화 내역 지우기"):
