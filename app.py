@@ -18,7 +18,23 @@ with st.sidebar:
             st.session_state.key = user_api_key
             
 if st.button('Assistant 새롭게 생성하기'):
-
+    client = OpenAI(api_key=user_api_key)
+    assistant = client.beta.assistants.create(
+        instructions="당신의 이름은 백경AI입니다. 친근한 말투로 대답해주세요. 챗봇으로서 성실하게 대답해주세요. 존댓말을 사용하지 말고 반말로 대답해주세요.",
+        model="gpt-4o",
+        tools=[{"type": "file_search"}],
+        tool_resources={"file_search":{"vector_store_ids": [vector_store.id]}},
+    )
+    if 'client' not in st.session_state: # client를 session_state로 저장
+        st.session_state.client = client
+    if 'assistant' not in st.session_state: # assistant를 session_state로 저장
+        st.session_state.assistant = assistant
+    messages = []
+    st.session_state.messages = messages # 대화 내역을 session_state에 저장
+    with st.chat_message("assistant"):
+        st.markdown("안녕, 부경대 친구들, 학교생활을 도와주는 백경이야!")
+    st.session_state.messages.append({"role": "assistant", "content": "안녕, 부경대 친구들, 학교생활을 도와주는 백경이야!"})
+    
 if prompt := st.chat_input("메시지를 입력하세요."):
     if st.session_state.client:
         st.session_state.messages.append({"content": prompt, "role": True}) # user의 prompt를 messages로 저장
