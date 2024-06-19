@@ -3,9 +3,9 @@ from openai import OpenAI
 from PIL import Image
 from streamlit_chat import message
 
-def display_avatar(image_path):
+def display_avatar(백경이.png):
     # 이미지 파일 열기
-    img = Image.open(image_path)
+    img = Image.open(백경이.png)
     img.show()
 
 def app():
